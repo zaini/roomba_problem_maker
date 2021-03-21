@@ -26,12 +26,15 @@ import random
 def generateLocationObjects(grid):
     objects = []
 
-    objects.append("roomba - roomba")
-
+    
+    roomba = 0
     for y in range(len(grid)):
         for x in range(len(grid[y])):
             item = grid[y][x]
             objects.append(f"x{x}y{y} - location")
+            if item == "X":
+                objects.append(f"roomba{roomba} - roomba")
+                roomba += 1
 
     return objects
 
@@ -39,12 +42,9 @@ def generateLocationObjects(grid):
 def generateInitObjects(grid, charge_amount, trash_amount):
     objects = []
 
-    objects.append(f"(=(battery-amount roomba) {charge_amount})")
-    objects.append(f"(=(trash-amount roomba) {trash_amount})")
-
     # initial steps is always 0
     objects.append("(= (steps) 0)")
-
+    roomba = 0
     for y in range(len(grid)):
         for x in range(len(grid[y])):
             item = grid[y][x]
@@ -68,9 +68,12 @@ def generateInitObjects(grid, charge_amount, trash_amount):
                 objects.append(f"(is-clean x{x}y{y})")
             elif item == "X":
                 # X = starting/roomba is dirty
-                objects.append(f"(at roomba x{x}y{y})")
+                objects.append(f"(at roomba{roomba} x{x}y{y})")
                 objects.append(f"(is-empty x{x}y{y})")
                 objects.append(f"(is-dirty x{x}y{y})")
+                objects.append(f"(=(battery-amount roomba{roomba}) {charge_amount})")
+                objects.append(f"(=(trash-amount roomba{roomba}) {trash_amount})")
+                roomba += 1
 
     for y in range(len(grid)):
         for x in range(len(grid[y])):
