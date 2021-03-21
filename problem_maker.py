@@ -202,8 +202,13 @@ def main():
         else:
             print("This is not a valid input.")
 
-    generateProblem(grid, initial_charge, initial_trash_amount, 2)
+    problem = generateProblem(grid, initial_charge, initial_trash_amount, "latest")
 
+    file = open(f"problem_newest.pddl", "w")
+    file.write(problem)
+    file.close()
+
+    print("Done.")
 
 def random_problems(n):
     width = random.randint(3, 15)
@@ -227,7 +232,7 @@ def random_problems(n):
 
     grid = grid.split(",")
 
-    for i in range(5, n):
+    for i in range(n):
         file = open(f"problem_{i}.pddl", "w")
         problem = generateProblem(grid, initial_charge, initial_trash_amount,
                                   i)
