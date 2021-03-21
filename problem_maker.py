@@ -66,10 +66,10 @@ def generateInitObjects(grid, charge_amount, trash_amount):
                 objects.append(f"(is-trashplace x{x}y{y})")
                 objects.append(f"(is-clean x{x}y{y})")
             elif item == "X":
-                # X = starting/roomba is not clean
+                # X = starting/roomba is dirty
                 objects.append(f"(at roomba x{x}y{y})")
                 objects.append(f"(is-empty x{x}y{y})")
-                # objects.append(f"(is-clean x{x}y{y})")
+                objects.append(f"(is-dirty x{x}y{y})")
 
     for y in range(len(grid)):
         for x in range(len(grid[y])):
@@ -184,8 +184,10 @@ def main():
             O - Obstacles
             _ - dirty/empty spot
 
-        (all occupied positions are clean by default)\n\n""")
-        # input_grid = "T_C,_O_,X__"
+        (all occupied positions are clean by default)\n\n\n\n\n""")
+
+        print("\n\n\n\n")
+
         grid = input_grid.split(",")
 
         # initial_charge = int(input("Enter initial charge for the roombo (int): "))
