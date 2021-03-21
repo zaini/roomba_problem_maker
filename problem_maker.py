@@ -245,5 +245,5 @@ def random_problems(n):
 
 
 if __name__ == "__main__":
-    # main()
-    random_problems(1)
+    main()
+    # random_problems(1)
