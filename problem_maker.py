@@ -26,7 +26,6 @@ import random
 def generateLocationObjects(grid):
     objects = []
 
-    
     roomba = 0
     for y in range(len(grid)):
         for x in range(len(grid[y])):
@@ -71,8 +70,10 @@ def generateInitObjects(grid, charge_amount, trash_amount):
                 objects.append(f"(at roomba{roomba} x{x}y{y})")
                 objects.append(f"(is-empty x{x}y{y})")
                 objects.append(f"(is-dirty x{x}y{y})")
-                objects.append(f"(=(battery-amount roomba{roomba}) {charge_amount})")
-                objects.append(f"(=(trash-amount roomba{roomba}) {trash_amount})")
+                objects.append(
+                    f"(=(battery-amount roomba{roomba}) {charge_amount})")
+                objects.append(
+                    f"(=(trash-amount roomba{roomba}) {trash_amount})")
                 roomba += 1
 
     for y in range(len(grid)):
@@ -204,8 +205,8 @@ def main():
 
 def random_problems(n):
     for i in range(n):
-        width = random.randint(3, 10)
-        height = random.randint(3, 10)
+        width = random.randint(3, 6)
+        height = random.randint(3, 6)
         initial_charge = random.randint(75, 100)
         initial_trash_amount = random.randint(0, 25)
 
