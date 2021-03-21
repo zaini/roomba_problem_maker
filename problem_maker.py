@@ -154,8 +154,9 @@ def generateProblem(grid, initial_charge, initial_trash_amount, n=0):
         )
     )\n
     """
+
     problem = problem_comment + a + b + c + d + e
-    print(problem)
+
     return problem
 
 
@@ -167,44 +168,44 @@ def isGridValid(grid, initial_charge, initial_trash_amount):
     return True
 
 
-# def main():
-#     while True:
-#         input_grid = input("""Enter your grid like the follow example:
+def main():
+    while True:
+        input_grid = input("""Enter your grid like the follow example:
 
-#         T_C,_O_,X__
+        T_C,_O_,X__
 
-#         This represents the following:
+        This represents the following:
 
-#         e.g.["T_C",
-#             "_O_",
-#             "X__"]
+        e.g.["T_C",
+            "_O_",
+            "X__"]
 
-#             X - starting
-#             C - charger
-#             T - trash
-#             O - Obstacles
-#             _ - dirty/empty spot
+            X - starting
+            C - charger
+            T - trash
+            O - Obstacles
+            _ - dirty/empty spot
 
-#         (all occupied positions are clean by default)\n\n\n\n\n""")
+        (all occupied positions are clean by default)\n\n\n\n\n""")
 
-#         print("\n\n\n\n")
+        print("\n\n\n\n")
 
-#         grid = input_grid.split(",")
+        grid = input_grid.split(",")
 
-#         # initial_charge = int(input("Enter initial charge for the roombo (int): "))
-#         initial_charge = 100
-#         # initial_trash_amount = int(input("Enter initial trash amount for the roombo (int): "))
-#         initial_trash_amount = 0
+        # initial_charge = int(input("Enter initial charge for the roombo (int): "))
+        initial_charge = 100
+        # initial_trash_amount = int(input("Enter initial trash amount for the roombo (int): "))
+        initial_trash_amount = 0
 
-#         if (isGridValid(grid, initial_charge, initial_trash_amount)):
-#             break
-#         else:
-#             print("This is not a valid input.")
+        if (isGridValid(grid, initial_charge, initial_trash_amount)):
+            break
+        else:
+            print("This is not a valid input.")
 
-#     generateProblem(grid, initial_charge, initial_trash_amount, 2)
+    generateProblem(grid, initial_charge, initial_trash_amount, 2)
 
 
-def random_problems():
+def random_problems(n):
     width = random.randint(3, 15)
     height = random.randint(3, 15)
     initial_charge = random.randint(50, 100)
@@ -224,13 +225,18 @@ def random_problems():
     rows[0] = "X" + row_to_change[1:]
     grid = ",".join(rows)
 
-    # for i, _ in enumerate(rows): print(i, _)
-
     grid = grid.split(",")
 
-    generateProblem(grid, initial_charge, initial_trash_amount, 2)
+    for i in range(5, n):
+        file = open(f"problem_{i}.pddl", "w")
+        problem = generateProblem(grid, initial_charge, initial_trash_amount,
+                                  i)
+        file.write(problem)
+        file.close()
+
+    print("Finished all random problems.")
 
 
 if __name__ == "__main__":
-    # main()
-    random_problems()
+    main()
+    # random_problems(100)
