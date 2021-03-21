@@ -20,6 +20,7 @@ e.g.    ["T_C",
         _ - dirty/empty spot
         (all occupied positions are clean by default)
 """
+import random
 
 
 def generateLocationObjects(grid):
@@ -112,7 +113,7 @@ def generateGoalObjects(grid):
     return objects
 
 
-def generateProblem(grid, initial_charge, initial_trash_amount, n = 0):
+def generateProblem(grid, initial_charge, initial_trash_amount, n=0):
     location_objects = "\n".join(generateLocationObjects(grid))
     util_objects = "\n".join(
         generateInitObjects(grid, initial_charge, initial_trash_amount))
@@ -166,42 +167,67 @@ def isGridValid(grid, initial_charge, initial_trash_amount):
     return True
 
 
-def main():
-    while True:
-        input_grid = input("""Enter your grid like the follow example:
+# def main():
+#     while True:
+#         input_grid = input("""Enter your grid like the follow example:
 
-        T_C,_O_,X__
+#         T_C,_O_,X__
 
-        This represents the following:
+#         This represents the following:
 
-        e.g.["T_C",
-            "_O_",
-            "X__"]
+#         e.g.["T_C",
+#             "_O_",
+#             "X__"]
 
-            X - starting
-            C - charger
-            T - trash
-            O - Obstacles
-            _ - dirty/empty spot
+#             X - starting
+#             C - charger
+#             T - trash
+#             O - Obstacles
+#             _ - dirty/empty spot
 
-        (all occupied positions are clean by default)\n\n\n\n\n""")
+#         (all occupied positions are clean by default)\n\n\n\n\n""")
 
-        print("\n\n\n\n")
+#         print("\n\n\n\n")
 
-        grid = input_grid.split(",")
+#         grid = input_grid.split(",")
 
-        # initial_charge = int(input("Enter initial charge for the roombo (int): "))
-        initial_charge = 100
-        # initial_trash_amount = int(input("Enter initial trash amount for the roombo (int): "))
-        initial_trash_amount = 0
+#         # initial_charge = int(input("Enter initial charge for the roombo (int): "))
+#         initial_charge = 100
+#         # initial_trash_amount = int(input("Enter initial trash amount for the roombo (int): "))
+#         initial_trash_amount = 0
 
-        if (isGridValid(grid, initial_charge, initial_trash_amount)):
-            break
-        else:
-            print("This is not a valid input.")
+#         if (isGridValid(grid, initial_charge, initial_trash_amount)):
+#             break
+#         else:
+#             print("This is not a valid input.")
+
+#     generateProblem(grid, initial_charge, initial_trash_amount, 2)
+
+
+def random_problems():
+    width = random.randint(0, 50)
+    height = random.randint(0, 50)
+    initial_charge = random.randint(0, 100)
+    initial_trash_amount = random.randint(0, 100)
+
+    options = ["C", "T", "O", "_", "_", "_"]
+
+    rows = []
+    for y in range(height):
+        row = ""
+        for x in range(width):
+            row += random.choice(options)
+        rows.append(row)
+
+    grid = ",".join(rows)
+
+    # for i, _ in enumerate(rows): print(i, _)
+
+    grid = grid.split(",")
 
     generateProblem(grid, initial_charge, initial_trash_amount, 2)
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    random_problems()
