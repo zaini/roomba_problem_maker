@@ -202,7 +202,8 @@ def main():
         else:
             print("This is not a valid input.")
 
-    problem = generateProblem(grid, initial_charge, initial_trash_amount, "latest")
+    problem = generateProblem(grid, initial_charge,
+                              initial_trash_amount, "latest")
 
     file = open(f"problem_newest.pddl", "w")
     file.write(problem)
@@ -210,16 +211,18 @@ def main():
 
     print("Done.")
 
+
 def random_problems(n):
     for i in range(n):
-        width = random.randint(3, 5)
-        height = random.randint(3, 5)
+        width = random.randint(3, 3)
+        height = random.randint(3, 3)
         initial_charge = random.randint(50, 100)
         initial_trash_amount = random.randint(0, 50)
         initial_charge = 100
         initial_trash_amount = 0
-        
-        options = ["C", "T","C", "T","C", "T","C", "T","C", "T","C", "T", "O","O","O","O","O","O", "_", "_", "_", "_", "_", "_", "_", "_","_", "_", "_", "_", "_", "_", "_", "_"]
+
+        options = ["C", "T", "C", "T", "C", "T", "O", "O", "O", "_", "_", "_",
+                   "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"]
 
         rows = []
         for y in range(height):
@@ -245,5 +248,5 @@ def random_problems(n):
 
 
 if __name__ == "__main__":
-    # main()
-    random_problems(1)
+    main()
+    # random_problems(10)
