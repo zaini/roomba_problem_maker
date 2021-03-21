@@ -2,6 +2,29 @@ let height = 10;
 let width = 15;
 let type = "_";
 
+let generatePDDL = () => {
+  let name = document.getElementById("name").value;
+  let grid = "";
+  for (var i = 0; i < height; i++) {
+    for (var j = 0; j < width; j++) {
+      cell = document.getElementById(`${i}-${j}`);
+      if (cell.innerText === "") {
+        grid += "_";
+      } else {
+        grid += cell.innerText;
+      }
+    }
+    if (i != height - 1) {
+      grid += ",";
+    }
+  }
+
+  charge = document.getElementById("charge").value;
+  trash = document.getElementById("trash").value;
+
+  pywebview.api.generatePDDL(grid, charge, trash, name);
+};
+
 let setGridSize = () => {
   height = document.getElementById("height").value;
   width = document.getElementById("width").value;
@@ -25,7 +48,7 @@ let setGrid = (x, y) => {
   switch (type) {
     case "_":
       color = "white";
-      type = ""
+      type = "";
       break;
     case "X":
       color = "lime";
@@ -45,7 +68,7 @@ let setGrid = (x, y) => {
   }
 
   cell.style.backgroundColor = color;
-  cell.innerHTML = type;
+  cell.innerHTML = `<div style="text-align: center; top: 50%">${type}</div>`;
   pywebview.api.print(`${x},${y} set to ${type}`);
 };
 

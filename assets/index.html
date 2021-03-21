@@ -11,15 +11,17 @@
 </head>
 
 <body>
+    <script src="script.js"></script>
+
     <h1 style="text-align: center;">Roomba PDDL Problems</h1>
 
     <!-- Create grid -->
-    <div style="text-align: center;">
+    <div style="text-align: center;width: 50%;margin-left: auto;margin-right: auto;">
         <label for="height">Height:</label>
-        <input type="number" id="height" name="height" min="1" value="3">
+        <input class="form-control" type="number" id="height" name="height" min="1" value="3">
         <br />
         <label for="width">Width:</label>
-        <input type="number" id="width" name="width" min="1" value="5">
+        <input class="form-control" type="number" id="width" name="width" min="1" value="5">
         <br />
         <button class="btn btn-default" onclick="setGridSize()">Create New Grid</button>
     </div>
@@ -48,12 +50,25 @@
     <!-- Show grid -->
     <div id="grid" style="margin: 5px;"></div>
 
-    <!-- Click to fill grid -->
+    <br />
+    <hr />
+    <br />
 
     <!-- Submit grid -->
-
-    <script src="script.js"></script>
-
+    <div style="text-align: center;width: 50%;margin-left: auto;margin-right: auto;">
+        <input class="form-control" id="name" name="name" placeholder="Problem name...">
+        <br />
+        <label for="charge">Charge:</label>
+        <input class="form-control" type="number" id="charge" name="height" min="0" max="100" value="100">
+        <br />
+        <label for="trash">Trash:</label>
+        <input class="form-control" type="number" id="trash" name="height" min="0" max="100" value="0">
+        <br />
+        <button class="btn btn-default" onclick="generatePDDL()">Create PDDL Problem</button>
+    </div>
+    <br />
+    <hr />
+    <br />
 </body>
 
 </html>
