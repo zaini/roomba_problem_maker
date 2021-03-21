@@ -205,12 +205,12 @@ def isGridValid(grid, initial_charge, initial_trash_amount):
 
 
 def random_problems():
-    width = random.randint(0, 50)
-    height = random.randint(0, 50)
-    initial_charge = random.randint(0, 100)
-    initial_trash_amount = random.randint(0, 100)
+    width = random.randint(3, 15)
+    height = random.randint(3, 15)
+    initial_charge = random.randint(50, 100)
+    initial_trash_amount = random.randint(0, 50)
 
-    options = ["C", "T", "O", "_", "_", "_"]
+    options = ["C", "T", "O", "_", "_", "_", "_", "_", "_", "_", "_"]
 
     rows = []
     for y in range(height):
@@ -219,6 +219,9 @@ def random_problems():
             row += random.choice(options)
         rows.append(row)
 
+    row_to_change = rows[random.randint(0, height - 1)]
+    # right now the top left is always the roomba
+    rows[0] = "X" + row_to_change[1:]
     grid = ",".join(rows)
 
     # for i, _ in enumerate(rows): print(i, _)
