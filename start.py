@@ -10,6 +10,7 @@ class Api():
 
         file = open(f"problem_{problem_name}.pddl", "w")
         
+        grid = grid.split(",")
         problem = generateProblem(
             grid, initial_charge, initial_trash_amount, problem_name)
 
