@@ -211,28 +211,30 @@ def main():
     print("Done.")
 
 def random_problems(n):
-    width = random.randint(3, 15)
-    height = random.randint(3, 15)
-    initial_charge = random.randint(50, 100)
-    initial_trash_amount = random.randint(0, 50)
-
-    options = ["C", "T", "O", "_", "_", "_", "_", "_", "_", "_", "_"]
-
-    rows = []
-    for y in range(height):
-        row = ""
-        for x in range(width):
-            row += random.choice(options)
-        rows.append(row)
-
-    row_to_change = rows[random.randint(0, height - 1)]
-    # right now the top left is always the roomba
-    rows[0] = "X" + row_to_change[1:]
-    grid = ",".join(rows)
-
-    grid = grid.split(",")
-
     for i in range(n):
+        width = random.randint(3, 5)
+        height = random.randint(3, 5)
+        initial_charge = random.randint(50, 100)
+        initial_trash_amount = random.randint(0, 50)
+        initial_charge = 100
+        initial_trash_amount = 0
+        
+        options = ["C", "T","C", "T","C", "T","C", "T","C", "T","C", "T", "O","O","O","O","O","O", "_", "_", "_", "_", "_", "_", "_", "_","_", "_", "_", "_", "_", "_", "_", "_"]
+
+        rows = []
+        for y in range(height):
+            row = ""
+            for x in range(width):
+                row += random.choice(options)
+            rows.append(row)
+
+        row_to_change = rows[random.randint(0, height - 1)]
+        # right now the top left is always the roomba
+        rows[0] = "X" + row_to_change[1:]
+        grid = ",".join(rows)
+
+        grid = grid.split(",")
+
         file = open(f"problem_{i}.pddl", "w")
         problem = generateProblem(grid, initial_charge, initial_trash_amount,
                                   i)
@@ -243,5 +245,5 @@ def random_problems(n):
 
 
 if __name__ == "__main__":
-    main()
-    # random_problems(100)
+    # main()
+    random_problems(1)
