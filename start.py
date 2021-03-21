@@ -3,14 +3,12 @@ import webview
 
 
 class Api():
-    def setGridType(self, grid_type):
-        print(f"Set grid type {grid_type}")
-
-    def setGridSize(self, height, width):
-        print(f"Set grid type {grid_type}")
+    # e.g. T_C,_O_,X__
+    def generatePDDL(self, grid):
+        print(f"Got the following input: {grid}")
 
     def print(self, x):
-        print("PRINT FROM JS:\n", x, "\nEND PRINT FROM JS")
+        print("PRINT FROM JS:\n", str(x), "\nEND PRINT FROM JS")
 
     def toggleFullscreen(self):
         webview.windows[0].toggle_fullscreen()
