@@ -86,19 +86,6 @@ def generateInitObjects(grid, charge_amount, trash_amount):
             if y - 1 >= 0:
                 objects.append(f"(has-path x{x}y{y} x{x}y{y - 1})")
 
-            # if item != "O":
-            #     # O = obstacle has no paths
-
-            #     # check each direction and see if you can have a path
-            #     if x - 1 >= 0 and grid[y][x - 1] != "O":
-            #         objects.append(f"(has-path x{x}y{y} x{x - 1}y{y})")
-            #     if x + 1 < len(grid[y]) and grid[y][x + 1] != "O":
-            #         objects.append(f"(has-path x{x}y{y} x{x + 1}y{y})")
-            #     if y + 1 < len(grid) and grid[y + 1][x] != "O":
-            #         objects.append(f"(has-path x{x}y{y} x{x}y{y + 1})")
-            #     if y - 1 >= 0 and grid[y - 1][x] != "O":
-            #         objects.append(f"(has-path x{x}y{y} x{x}y{y - 1})")
-
     return objects
 
 
@@ -214,12 +201,10 @@ def main():
 
 def random_problems(n):
     for i in range(n):
-        width = random.randint(3, 3)
-        height = random.randint(3, 3)
-        initial_charge = random.randint(50, 100)
-        initial_trash_amount = random.randint(0, 50)
-        initial_charge = 100
-        initial_trash_amount = 0
+        width = random.randint(3, 10)
+        height = random.randint(3, 10)
+        initial_charge = random.randint(75, 100)
+        initial_trash_amount = random.randint(0, 25)
 
         options = ["C", "T", "C", "T", "C", "T", "O", "O", "O", "_", "_", "_",
                    "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"]
@@ -248,5 +233,6 @@ def random_problems(n):
 
 
 if __name__ == "__main__":
+    # pass
     main()
     # random_problems(1)

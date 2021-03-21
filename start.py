@@ -1,6 +1,7 @@
 import os
 import webview
 from problem_maker import generateProblem
+from problem_maker import random_problems
 
 
 class Api():
@@ -9,7 +10,7 @@ class Api():
         print(f"Got the following input: {grid} called {problem_name} ")
 
         file = open(f"problem_{problem_name}.pddl", "w")
-        
+
         grid = grid.split(",")
         problem = generateProblem(
             grid, initial_charge, initial_trash_amount, problem_name)
@@ -17,8 +18,8 @@ class Api():
         file.write(problem)
         file.close()
 
-    def print(self, x):
-        print("PRINT FROM JS:\n", str(x), "\nEND PRINT FROM JS")
+    def generateRandomPDDL(self, n):
+        random_problems(int(n))
 
     def toggleFullscreen(self):
         webview.windows[0].toggle_fullscreen()

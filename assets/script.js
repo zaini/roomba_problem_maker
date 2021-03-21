@@ -2,6 +2,13 @@ let height = 10;
 let width = 15;
 let type = "_";
 
+let generateRandomPDDL = () => {
+  let n = document.getElementById("n").value;
+
+  pywebview.api.generateRandomPDDL(n);
+  alert(`Generated ${n} random problem(s).`);
+};
+
 let generatePDDL = () => {
   let name = document.getElementById("name").value;
   let grid = "";
@@ -23,6 +30,8 @@ let generatePDDL = () => {
   trash = document.getElementById("trash").value;
 
   pywebview.api.generatePDDL(grid, charge, trash, name);
+
+  alert(`Generated your problem.`);
 };
 
 let setGridSize = () => {
@@ -33,7 +42,6 @@ let setGridSize = () => {
 
 let setType = () => {
   type = document.getElementById("type-selector").value;
-  pywebview.api.print(type);
 };
 
 let setGrid = (x, y) => {
@@ -69,7 +77,7 @@ let setGrid = (x, y) => {
 
   cell.style.backgroundColor = color;
   cell.innerHTML = `<div style="text-align: center; top: 50%">${type}</div>`;
-  pywebview.api.print(`${x},${y} set to ${type}`);
+  // pywebview.api.print(`${x},${y} set to ${type}`);
 };
 
 let updateGrid = () => {

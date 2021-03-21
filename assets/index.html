@@ -66,6 +66,21 @@
         <br />
         <button class="btn btn-default" onclick="generatePDDL()">Create PDDL Problem</button>
     </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <!-- Random problems -->
+    <div style="text-align: center;width: 50%;margin-left: auto;margin-right: auto;">
+        <label for="n">How many random problems?</label>
+        <input class="form-control" type="number" id="n" name="n" min="1" value="1">
+        <br />
+        <button class="btn btn-default" onclick="generateRandomPDDL()" data-toggle="tooltip" data-placement="top"
+            title="Random problems have a single Roomba. Height/Width is between 3-10. Charge is between 75-100 and trash is between 0-25.">Create
+            Random Problem(s)</button>
+    </div>
+
     <br />
     <hr />
     <br />
