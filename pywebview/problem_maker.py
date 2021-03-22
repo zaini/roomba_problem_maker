@@ -236,6 +236,35 @@ def random_problems(n):
     print("Finished all random problems.")
 
 
+def generate_random_problem():
+    width = random.randint(3, 6)
+    height = random.randint(3, 6)
+    initial_charge = random.randint(75, 100)
+    initial_trash_amount = random.randint(0, 25)
+
+    options = ["C", "T", "C", "T", "C", "T", "O", "O", "O", "_", "_", "_",
+               "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"]
+
+    rows = []
+    for y in range(height):
+        row = ""
+        for x in range(width):
+            row += random.choice(options)
+        rows.append(row)
+
+    row_to_change = rows[random.randint(0, height - 1)]
+    # right now the top left is always the roomba
+    rows[0] = "X" + row_to_change[1:]
+    grid = ",".join(rows)
+
+    grid = grid.split(",")
+
+    problem = generateProblem(
+        grid, initial_charge, initial_trash_amount, "random")
+
+    return problem
+
+
 if __name__ == "__main__":
     # pass
     main()

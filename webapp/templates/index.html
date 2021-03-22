@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-framework="javascript">
+
+<head>
+    <meta charset="utf-8">
+    <title>Create Roomba PDDL Problems</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+    <script src="../static/script.js"></script>
+
+    <h1 style="text-align: center;">Roomba PDDL Problems</h1>
+
+    <!-- Create grid -->
+    <div style="text-align: center;width: 50%;margin-left: auto;margin-right: auto;">
+        <label for="height">Height:</label>
+        <input class="form-control" type="number" id="height" name="height" min="1" value="3">
+        <br />
+        <label for="width">Width:</label>
+        <input class="form-control" type="number" id="width" name="width" min="1" value="5">
+        <br />
+        <button class="btn btn-default" onclick="setGridSize()">Create New Grid</button>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <!-- Select what to fill grid with -->
+    <div style="text-align: center;">
+        <label for="type-selector">Choose a grid type:</label>
+
+        <select class="form-select" name="type-selector" id="type-selector" onchange="setType()">
+            <option value="_" default>Empty grid</option>
+            <option value="X">Starting (Roomba)</option>
+            <option value="C">Charger</option>
+            <option value="T">Trash</option>
+            <option value="O">Obstacle</option>
+        </select>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <!-- Show grid -->
+    <div id="grid" style="margin-left: 5px;"></div>
+
+    <br />
+    <hr />
+    <br />
+
+    <!-- Submit grid -->
+    <div style="text-align: center;width: 50%;margin-left: auto;margin-right: auto;">
+        <label for="charge">Charge:</label>
+        <input class="form-control" type="number" id="charge" name="height" min="0" max="100" value="100">
+        <br />
+        <label for="trash">Trash:</label>
+        <input class="form-control" type="number" id="trash" name="height" min="0" max="100" value="0">
+        <br />
+        <button class="btn btn-default" onclick="generatePDDL()">Create PDDL Problem</button>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <!-- Random problems -->
+    <div style="text-align: center;width: 50%;margin-left: auto;margin-right: auto;">
+        <button class="btn btn-default" onclick="generateRandomPDDL()" data-toggle="tooltip" data-placement="top"
+            title="Random problems have a single Roomba. Height/Width is between 3-6. Charge is between 75-100 and trash is between 0-25.">Create
+            Random Problem</button>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+
+    <!-- Result -->
+    <div style="text-align: center;width: 50%;margin-left: auto;margin-right: auto;">
+        <label for="result">Problem:</label>
+        <textarea name="result" id="result" class="form-control" placeholder="Generate problem goes here.."
+            disabled></textarea>
+    </div>
+
+    <br />
+    <hr />
+    <br />
+</body>
+
+</html>
